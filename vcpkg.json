@@ -1,0 +1,10 @@
+{
+  "name": "xvncmanager",
+  "version": "0.99",
+  "description": "TightVNC sunucularina baglanan Qt tabanli VNC viewer",
+  "dependencies": [
+    "libjpeg-turbo",
+    "libvncserver",
+    "zlib"
+  ]
+}

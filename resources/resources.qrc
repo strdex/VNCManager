@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>app.ico</file>
+        <file>icons/connect.svg</file>
+        <file>icons/disconnect.svg</file>
+        <file>icons/cad.svg</file>
+        <file>icons/win.svg</file>
+        <file>icons/zoom-in.svg</file>
+        <file>icons/zoom-out.svg</file>
+        <file>icons/fit.svg</file>
+        <file>icons/actual.svg</file>
+        <file>icons/info.svg</file>
+        <file>icons/close.svg</file>
+        <file>icons/viewonly.svg</file>
+        <file>icons/control.svg</file>
+        <file>icons/cursor.svg</file>
+        <file>icons/transfer.svg</file>
+        <file>icons/fullscreen.svg</file>
+    </qresource>
+</RCC>

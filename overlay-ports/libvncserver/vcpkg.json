@@ -1,0 +1,15 @@
+{
+  "name": "libvncserver",
+  "version": "0.9.15",
+  "description": "LibVNCServer/LibVNCClient cross-platform VNC libraries (client build only)",
+  "homepage": "https://github.com/LibVNC/libvncserver",
+  "license": "GPL-2.0-or-later",
+  "dependencies": [
+    "libjpeg-turbo",
+    "zlib",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Derleme ciktilari
+/build/
+/build-debug/
+/build-static/
+build.7z
+
+# vcpkg bagimlilik kurulumu (her makinede yeniden olusur)
+/vcpkg_installed/
+
+# CMake
+CMakeUserPresets.json
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+
+# IDE / editor
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Yerel makine yollari (local.env.cmd - Qt/vcpkg konumlari; git'e girmez)
+local.env.cmd
+
+# Isleme artiklari
+aqtinstall.log
+*.log
+Thumbs.db

@@ -1,0 +1,56 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21 },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Windows x64 - Release (Ninja + vcvars)",
+      "description": "Bu preset, VS2019 BuildTools vcvars64 ortami icin calistirilmalidir (bkz. build.cmd).",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_PREFIX_PATH": "$env{QTDIR}",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/overlay-ports",
+        "VCPKG_TARGET_TRIPLET": "x64-windows"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "default",
+      "displayName": "Windows x64 - Debug (Ninja + vcvars)",
+      "description": "Bu preset, VS2019 BuildTools vcvars64 ortami icin calistirilmalidir (bkz. build-debug.cmd).",
+      "binaryDir": "${sourceDir}/build-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release-static",
+      "inherits": "default",
+      "displayName": "Windows x64 - Release STATIK (tek exe, ~15 MB)",
+      "description": "Statik Qt 6.8.3 + x64-windows-static vcpkg triplet + /MT CRT. Calistirma: build-static.cmd (vcvars64 gerekli).",
+      "binaryDir": "${sourceDir}/build-static",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "$env{QTDIR_STATIC}",
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "configurePreset": "default"
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release-static",
+      "configurePreset": "release-static"
+    }
+  ]
+}
