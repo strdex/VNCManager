@@ -1,10 +1,35 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(xVNCManager VERSION 0.99 LANGUAGES CXX)
+# --- Surum: tek kaynak kokekteki VERSION dosyasi (0.99.x) --------------------
+# Derleme sonunda build betikleri sayiyi 1 artirir; exe ozellikleri ve
+# QCoreApplication::applicationVersion bundan beslenir.
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/VERSION" XVNCRM_VERSION_FILE)
+string(STRIP "${XVNCRM_VERSION_FILE}" XVNCRM_VERSION_FILE)
+string(REPLACE "." ";" _xvn_vers "${XVNCRM_VERSION_FILE}")
+list(GET _xvn_vers 0 XVNCRM_VER_MAJOR)
+list(GET _xvn_vers 1 XVNCRM_VER_MINOR)
+list(GET _xvn_vers 2 XVNCRM_VER_PATCH)
+
+project(xVNCManager
+    VERSION ${XVNCRM_VER_MAJOR}.${XVNCRM_VER_MINOR}.${XVNCRM_VER_PATCH}
+    LANGUAGES CXX
+)
 
 if(WIN32)
-    enable_language(RC)   # resources/app.rc (exe ikonu)
+    enable_language(RC)   # resources/app.rc (ikon) + app_version.rc (surum)
 endif()
+
+# VERSION degisince derleme otomatik yeniden yapilandirilir.
+set_property(DIRECTORY APPEND PROPERTY
+             CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION")
+
+# Exe surum bilgisi kaynagi (configure_file).
+set(XVNCRM_RC_COMMA "${XVNCRM_VER_MAJOR},${XVNCRM_VER_MINOR},${XVNCRM_VER_PATCH},0")
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_version.rc.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/app_version.rc"
+    @ONLY
+)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -64,6 +89,9 @@ set(SOURCES
 
     # Uygulama ikonu (rc.exe app.ico'yu resources/ altindan bulsun)
     resources/app.rc
+
+    # Exe surum bilgisi: VERSION dosyasindan uretilir (app_version.rc)
+    ${CMAKE_CURRENT_BINARY_DIR}/app_version.rc
 )
 
 set_source_files_properties(resources/app.rc PROPERTIES
@@ -74,6 +102,9 @@ set_source_files_properties(resources/app.rc PROPERTIES
 qt_add_executable(xVNCManager WIN32 ${SOURCES})
 
 target_include_directories(xVNCManager PRIVATE src ${RFB_INCLUDE_DIR})
+
+# Uygulama ici surum metni (QCoreApplication::applicationVersion)
+target_compile_definitions(xVNCManager PRIVATE XVNCRM_VERSION="${PROJECT_VERSION}")
 
 target_link_libraries(xVNCManager PRIVATE
     Qt6::Widgets

@@ -1,0 +1,35 @@
+// Otomatik uretilir: cmake configure_file ile VERSION dosyasindan uretir.
+// DOGUYU BU DOSYADA DEGIL, KOKTEKI "VERSION" DOSYASINDA DUZELTIN.
+// Turkce karakterler icin UTF-8 + code_page 65001 (rc.exe destekler).
+#pragma code_page(65001)
+
+// DIKKAT: "VS_VERSION_INFO" winver.h makrosudur; include edilmediginde rc onu
+// metin ismi sanar ve Windows surum bilgisini okuyamaz. ID 1 yazmak zorunlu.
+1 VERSIONINFO
+ FILEVERSION @XVNCRM_RC_COMMA@
+ PRODUCTVERSION @XVNCRM_RC_COMMA@
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "FileDescription", "xVNC Manager"
+            VALUE "FileVersion", "@PROJECT_VERSION@"
+            VALUE "InternalName", "xVNCManager"
+            VALUE "LegalCopyright", "Geliştiren MiMo with Şahin AKIN"
+            VALUE "OriginalFilename", "xVNCManager.exe"
+            VALUE "ProductName", "xVNC Manager"
+            VALUE "ProductVersion", "@PROJECT_VERSION@"
+            VALUE "Comments", "Derleme no @PROJECT_VERSION@ — Geliştiren: MiMo with Şahin AKIN"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

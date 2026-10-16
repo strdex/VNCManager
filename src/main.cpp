@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
     QCoreApplication::setOrganizationName(QStringLiteral("xVNC"));
     QCoreApplication::setApplicationName(QStringLiteral("xVNCManager"));
-    QCoreApplication::setApplicationVersion(QStringLiteral("0.99"));
+    QCoreApplication::setApplicationVersion(QStringLiteral(XVNCRM_VERSION));
 
     app.setWindowIcon(QIcon(QStringLiteral(":/app.ico")));
 

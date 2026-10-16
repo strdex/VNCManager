@@ -1,6 +1,6 @@
 # xVNC Manager
 
-**Sürüm 0.99** · Geliştiren: **MiMo with Şahin AKIN**
+**Sürüm 0.99.x** · derleme no: [`VERSION`](VERSION) dosyasında · Geliştiren: **MiMo with Şahin AKIN**
 
 Bağlantı yöneticili, Qt 6 ile yazılmış Windows masaüstü VNC viewer'ı. TightVNC 2
 sunucularına tam destek verir: ekran görüntüleme, izleme/kontrol modu ve **çift
@@ -47,7 +47,7 @@ panelli dosya transferi** (TightVNC 2'nin 0xFC alt protokolü). Arayüz Türkçe
 ### Uygulama
 - **Tek exe statik dağıtım: 17,5 MB** (DLL gerekmez) veya DLL'li dinamik sürüm
 - SVG araç çubuğu ikonları, uygulama ikonu, koyu modern görünüm
-- EXE özelliklerinde sürüm bilgisi: *xVNC Manager · 0.99 ·
+- EXE özelliklerinde sürüm ve derleme bilgisi: *xVNC Manager · 0.99.x ·
   Geliştiren MiMo with Şahin AKIN*
 - Türkçe arayüz; hata ayıklama günlüğü `build\xvncmanager.log`
 
@@ -117,6 +117,12 @@ Ardından betikleri çalıştırın (betikler `vcvars64.bat`'ı kendisi çağır
 .\build-static.cmd   # statik sürüm (tek exe, 17,5 MB — dağıtımı bunu kullanın)
 .\build-debug.cmd    # hata ayıklama derlemesi
 ```
+
+**Sürüm / derleme no:** Kökteki [`VERSION`](VERSION) dosyası tek kaynaktır
+(`0.99.x`); her başarılı derlemeden sonra betikler sayıyı otomatik bir artırır,
+böylece `x` o derlemenin numarası olur. Sürümü elle değiştirmek için bu dosyayı
+düzenleyin — exe özelliklerindeki ve `QCoreApplication::applicationVersion`'daki
+değer bundan beslenir.
 
 vcpkg bağımlılıkları (zlib, libjpeg-turbo, libvncserver) yapılandırma sırasında
 otomatik kurulur; elle kurmak isterseniz:

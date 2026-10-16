@@ -28,5 +28,8 @@ if errorlevel 1 exit /b 1
 cmake --build --preset debug
 if errorlevel 1 exit /b 1
 
+rem Basarili derlemeden sonra derleme noyunu (VERSION - 0.99.x) 1 artir.
+call "%~dp0bump-build-number.cmd"
+
 echo.
 echo Cikti: %~dp0build-debug\xVNCManager.exe

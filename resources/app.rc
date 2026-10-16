@@ -1,36 +1,6 @@
-// Uygulama ikonu + exe surum bilgileri (Windows exe kaynak dosyasi)
-// Turkce karakterler icin UTF-8 + code_page 65001 (rc.exe destekler).
+// Uygulama ikonu (Windows exe kaynak dosyasi).
+// Sürüm bilgisi resources/app_version.rc.in'den VERSION dosyasina gore
+// cmake tarafindan uretilir (build dizinine yazar).
 #pragma code_page(65001)
 
 IDI_ICON1 ICON "app.ico"
-
-// DIKKAT: "VS_VERSION_INFO" winver.h makrosudur; include edilmediginde rc onu
-// metin ismi sanar ve Windows surum bilgisini okuyamaz. ID 1 yazmak zorunlu.
-1 VERSIONINFO
- FILEVERSION 0,99,0,0
- PRODUCTVERSION 0,99,0,0
- FILEFLAGSMASK 0x3fL
- FILEFLAGS 0x0L
- FILEOS 0x40004L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "040904B0"
-        BEGIN
-            VALUE "FileDescription", "xVNC Manager"
-            VALUE "FileVersion", "0.99"
-            VALUE "InternalName", "xVNCManager"
-            VALUE "LegalCopyright", "Geliştiren MiMo with Şahin AKIN"
-            VALUE "OriginalFilename", "xVNCManager.exe"
-            VALUE "ProductName", "xVNC Manager"
-            VALUE "ProductVersion", "0.99"
-            VALUE "Comments", "Version 0.99 — Geliştiren: MiMo with Şahin AKIN"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x409, 1200
-    END
-END
