@@ -451,6 +451,48 @@ void VncView::wheelEvent(QWheelEvent* event)
     event->accept();
 }
 
+bool VncView::claimsKey(const QKeyEvent* event) const
+{
+    // Penceredeki kisayollar yalnizca goruntuleyici disi islevler icin
+    // ayrilir: F11 (tam ekran) ve pano/dosya transferi kombinasyonlari
+    // (Ctrl+Shift+C/V/F). Bunlar disindaki her tus kontrol modunda uzak
+    // sisteme gonderilir; boylece Del, Ctrl+C, Ctrl+V, Ctrl+W gibi tuslar
+    // uygulama eylemleri tarafindan yutulmaz.
+    if (event->key() == Qt::Key_F11)
+        return false;
+
+    const Qt::KeyboardModifiers mods = event->modifiers();
+    if (mods.testFlag(Qt::ControlModifier) && mods.testFlag(Qt::ShiftModifier)) {
+        switch (event->key()) {
+        case Qt::Key_C:
+        case Qt::Key_V:
+        case Qt::Key_F:
+            return false;
+        default:
+            break;
+        }
+    }
+
+    return true;
+}
+
+bool VncView::event(QEvent* event)
+{
+    // Kisayol cakismasi: Qt, bir QAction/QShortcut tetiklenmeden once odak
+    // widget'ina ShortcutOverride gonderir. Kontrol modunda bunu kabul ederek
+    // penceredeki kisayollarin (orn. Del = "Baglantiyi sil", Ctrl+W = sekme
+    // kapat) tusu yutmasi engellenir ve tus keyPressEvent'e ulasir.
+    if (event->type() == QEvent::ShortcutOverride
+        && m_session && m_connected && !m_profile.viewOnly) {
+        if (claimsKey(static_cast<QKeyEvent*>(event))) {
+            event->accept();
+            return true;
+        }
+    }
+
+    return QWidget::event(event);
+}
+
 void VncView::keyPressEvent(QKeyEvent* event)
 {
     if (!m_session || !m_connected || m_profile.viewOnly) {

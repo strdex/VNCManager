@@ -67,6 +67,7 @@ signals:
     void viewOnlyChanged(bool viewOnly);
 
 protected:
+    bool event(QEvent* event) override;
     void paintEvent(QPaintEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
@@ -95,6 +96,8 @@ private:
     quint8 currentButtonMask() const;
     void sendPointerAt(const QPoint& viewPos, quint8 extraMask);
     void updateStatusText(const QString& text);
+    // Uzak sisteme gonderilecek tus mu (pencere kisayoluyla yutulmamali mi)?
+    bool claimsKey(const QKeyEvent* event) const;
 
     ConnectionProfile m_profile;
     VncSession* m_session = nullptr;

@@ -29,7 +29,7 @@ panelli dosya transferi** (TightVNC 2'nin 0xFC alt protokolü). Arayüz Türkçe
   CopyRect, Raw — JPEG tarafı libjpeg-turbo ile hızlı çözülür
 - Ölçeklendirme: pencereye sığdır (`Ctrl+0`), 1:1 (`Ctrl+1`), yakınlaştırma
   (`Ctrl+tekerlek` ve menü) — çift tık uzak ekrana gider, zoom'u çalmaz
-- Tam ekran (`F11`, çıkış için `Esc`)
+- Tam ekran (`F11` ile aç/kapat)
 - Fare (tekerlek dâhil) ve klavye gönderimi (X11 keysym eşleme)
 - Pano eşitleme (sunucu ↔ istemci, *Pano* menüsü)
 - Özel tuşlar (*Tuşlar* menüsü: Ctrl+Alt+Del vb.)
@@ -148,15 +148,25 @@ Preset'ler: `default` (release), `debug`, `release-static` — hepsi Ninja +
 
 | Kısayol | İşlev |
 |---|---|
-| `F5` | Seçili sunucuya bağlan |
-| `F11` | Tam ekran (çıkış için `Esc`) |
+| `F5` | Seçili sunucuya bağlan (bağlantı kopuksa) |
+| `F11` | Tam ekran aç/kapat |
 | `Ctrl+0` / `Ctrl+1` | Pencereye sığdır / 1:1 |
 | `Ctrl+tekerlek` | Yakınlaştırma |
+| `Ctrl+Shift+F` | Dosya transferi |
+| `Ctrl+Shift+C` / `Ctrl+Shift+V` | Sunucu panosunu al / panodan gönder |
 | `Ctrl+W` | Aktif sekmeyi kapat |
 | `Ctrl+Tab` | Sonraki sekme |
 | `Ctrl+N` | Yeni bağlantı |
 | `Ctrl+E` | Seçili bağlantıyı düzenle |
 | `Del` | Seçili bağlantıyı sil |
+
+> **Klavye yönlendirmesi:** Kontrol modunda uzak masaüstü odaktayken **tüm
+> tuşlar uzak sisteme gönderilir** (`Del`, `Ctrl+C`, `Ctrl+V`, `Ctrl+X`,
+> `Ctrl+W`, `Ctrl+N`, `Ctrl+0/Ctrl+1`, `Ctrl+Tab`, `F5` dâhil) — çakışan
+> kısayollar bu sırada tetiklenmez. Uygulamada kalanlar: **`F11`** (tam ekran),
+> **`Ctrl+Shift+C/V/F`** (pano ve dosya transferi) ve **`Ctrl+tekerlek`**
+> (yakınlaştırma). Kısayollar liste/araç çubuğu odaktayken ya da izleme
+> modunda normal çalışır.
 
 ---
 

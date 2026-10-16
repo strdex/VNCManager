@@ -86,8 +86,19 @@ quint32 keysymForKeyEvent(const QKeyEvent* event)
         return 0;
 
     const uint codePoint = ucs4.first();
-    if (codePoint < 0x20 || codePoint == 0x7F)
-        return 0; // kontrol karakterleri istemciden gonderilmez
+    if (codePoint < 0x20 || codePoint == 0x7F) {
+        // Ctrl+<tus> kombinasyonlarinda text() kontrol karakteri doner
+        // (orn. Ctrl+C -> 0x03). Ctrl tusu ayri bir keysym olarak
+        // gonderildigi icin temel tusun keysym'i iletilmelidir; aksi halde
+        // Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A, Ctrl+Z gibi kombinasyonlar
+        // sunucuya hic ulasmaz.
+        const int key = event->key();
+        if (key >= Qt::Key_A && key <= Qt::Key_Z)
+            return static_cast<quint32>(key - Qt::Key_A) + 'a'; // kucuk harf keysym
+        if (key >= 0x20 && key <= 0x7E)
+            return static_cast<quint32>(key);                   // rakam/noktalama/bosluk
+        return 0;
+    }
 
     if (codePoint <= 0xFF)
         return codePoint;        // Latin-1 keysym'leri ayni degerdedir
