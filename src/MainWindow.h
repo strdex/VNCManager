@@ -8,6 +8,7 @@
 class QTreeWidget;
 class QTreeWidgetItem;
 class QLineEdit;
+class QSplitter;
 class QTabWidget;
 class QScrollArea;
 class QLabel;
@@ -51,6 +52,9 @@ private slots:
     void onCopyFromRemote();
     void onCloseActiveTab();
     void onTabChanged(int index);
+    void onToggleLeftPanel(bool show);
+    void onShowAbout();
+    void onShowChangelog();
 
 private:
     void buildUi();
@@ -76,11 +80,21 @@ private:
     void updateScalingActions();
     void updateZoomLabel();
 
+    // Yardim > Hakkinda / Degisiklikler
+    void showAboutDialog(int tabIndex);
+    static QString aboutDialogHtml();
+    static QString changelogDialogHtml();
+
     QList<ConnectionProfile> m_profiles;
 
     QTreeWidget* m_list = nullptr;
     QLineEdit* m_quickHostEdit = nullptr;
     QTabWidget* m_tabs = nullptr;
+
+    // Sol panel (baglanti listesi) ac/kapa durumu
+    QWidget* m_leftPanel = nullptr;
+    QSplitter* m_splitter = nullptr;
+    QList<int> m_panelSizes;
 
     QAction* m_connectAction = nullptr;
     QAction* m_disconnectAction = nullptr;
@@ -98,5 +112,6 @@ private:
     QAction* m_zoomInAction = nullptr;
     QAction* m_zoomOutAction = nullptr;
     QAction* m_closeTabAction = nullptr;
+    QAction* m_panelAction = nullptr;
     QLabel* m_zoomLabel = nullptr;
 };

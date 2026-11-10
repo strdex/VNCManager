@@ -24,6 +24,8 @@ panelli dosya transferi** (TightVNC 2'nin 0xFC alt protokolü). Arayüz Türkçe
 
 ### Görüntüleme ve kontrol
 - Çoklu sekme; her sekme bağımsız bir oturum
+- **Kapatılabilir sol panel**: bağlantı listesi `Ctrl+Shift+L` ya da araç
+  çubuğu düğmesiyle gizlenip geri getirilir (uzak ekrana geniş yer bırakır)
 - **İzleme / kontrol modu** (yalnızca görüntüleme ↔ tam kontrol)
 - Ekran kodlamaları: **Tight** (sıkıştırma + JPEG), ZRLE, Hextile, CoRRE, RRE,
   CopyRect, Raw — JPEG tarafı libjpeg-turbo ile hızlı çözülür
@@ -160,6 +162,7 @@ Preset'ler: `default` (release), `debug`, `release-static` — hepsi Ninja +
 | `Ctrl+tekerlek` | Yakınlaştırma |
 | `Ctrl+Shift+F` | Dosya transferi |
 | `Ctrl+Shift+C` / `Ctrl+Shift+V` | Sunucu panosunu al / panodan gönder |
+| `Ctrl+Shift+L` | Sol paneli (bağlantı listesini) göster/gizle |
 | `Ctrl+W` | Aktif sekmeyi kapat |
 | `Ctrl+Tab` | Sonraki sekme |
 | `Ctrl+N` | Yeni bağlantı |
@@ -170,9 +173,9 @@ Preset'ler: `default` (release), `debug`, `release-static` — hepsi Ninja +
 > tuşlar uzak sisteme gönderilir** (`Del`, `Ctrl+C`, `Ctrl+V`, `Ctrl+X`,
 > `Ctrl+W`, `Ctrl+N`, `Ctrl+0/Ctrl+1`, `Ctrl+Tab`, `F5` dâhil) — çakışan
 > kısayollar bu sırada tetiklenmez. Uygulamada kalanlar: **`F11`** (tam ekran),
-> **`Ctrl+Shift+C/V/F`** (pano ve dosya transferi) ve **`Ctrl+tekerlek`**
-> (yakınlaştırma). Kısayollar liste/araç çubuğu odaktayken ya da izleme
-> modunda normal çalışır.
+> **`Ctrl+Shift+C/V/F`** (pano ve dosya transferi), **`Ctrl+Shift+L`**
+> (sol panel) ve **`Ctrl+tekerlek`** (yakınlaştırma). Kısayollar
+> liste/araç çubuğu odaktayken ya da izleme modunda normal çalışır.
 
 ---
 

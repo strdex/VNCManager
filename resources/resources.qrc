@@ -16,5 +16,6 @@
         <file>icons/cursor.svg</file>
         <file>icons/transfer.svg</file>
         <file>icons/fullscreen.svg</file>
+        <file>icons/panel.svg</file>
     </qresource>
 </RCC>

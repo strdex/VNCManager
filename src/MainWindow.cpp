@@ -8,6 +8,7 @@
 #include <QAction>
 #include <QApplication>
 #include <QCloseEvent>
+#include <QDialog>
 #include <QDockWidget>
 #include <QFile>
 #include <QFileDialog>
@@ -30,6 +31,7 @@
 #include <QSplitter>
 #include <QStatusBar>
 #include <QTabWidget>
+#include <QTextBrowser>
 #include <QToolBar>
 #include <QTreeWidget>
 #include <QVBoxLayout>
@@ -53,6 +55,12 @@ MainWindow::MainWindow(QWidget* parent)
     const QSettings settings;
     restoreGeometry(settings.value(QStringLiteral("window/geometry")).toByteArray());
     restoreState(settings.value(QStringLiteral("window/state")).toByteArray());
+
+    // Sol panel durumu son kapanistaki haliyle geri yuklenir.
+    if (!settings.value(QStringLiteral("window/leftPanel"), true).toBool()) {
+        m_panelAction->setChecked(false);
+        onToggleLeftPanel(false);
+    }
     qDebug() << "step: ctor bitti";
 }
 
@@ -104,6 +112,7 @@ void MainWindow::buildUi()
     leftLayout->addWidget(new QLabel(tr("Hızlı bağlan"), left));
     leftLayout->addLayout(quickLayout);
     leftLayout->addWidget(group);
+    m_leftPanel = left;
 
     // ---- Sag panel: oturum sekmeleri ----------------------------------------
     m_tabs = new QTabWidget(this);
@@ -135,6 +144,8 @@ void MainWindow::buildUi()
     splitter->setStretchFactor(0, 0);
     splitter->setStretchFactor(1, 1);
     splitter->setSizes({280, 820});
+    m_splitter = splitter;
+    m_panelSizes = splitter->sizes();
     setCentralWidget(splitter);
 
     // ---- Araç çubuğu ve eylemler --------------------------------------------
@@ -231,6 +242,13 @@ void MainWindow::buildUi()
                                           tr("Sekmeyi kapat"), this, &MainWindow::onCloseActiveTab);
     m_closeTabAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+W")));
 
+    m_panelAction = toolbar->addAction(QIcon(QStringLiteral(":/icons/panel.svg")),
+                                       tr("Sol panel"), this, &MainWindow::onToggleLeftPanel);
+    m_panelAction->setCheckable(true);
+    m_panelAction->setChecked(true);
+    m_panelAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Shift+L")));
+    m_panelAction->setToolTip(tr("Bağlantı listesini göster/gizle (Ctrl+Shift+L)"));
+
     // ---- Menuler -------------------------------------------------------------
     QMenu* fileMenu = menuBar()->addMenu(tr("Dosya"));
     fileMenu->addAction(m_infoAction);
@@ -252,6 +270,8 @@ void MainWindow::buildUi()
                         qApp, &QApplication::quit);
 
     QMenu* viewMenu = menuBar()->addMenu(tr("Görünüm"));
+    viewMenu->addAction(m_panelAction);
+    viewMenu->addSeparator();
     viewMenu->addAction(m_fullScreenAction);
     viewMenu->addSeparator();
     viewMenu->addAction(m_zoomInAction);
@@ -288,6 +308,10 @@ void MainWindow::buildUi()
             m_tabs->setCurrentIndex((m_tabs->currentIndex() + 1) % m_tabs->count());
     });
     windowMenu->addAction(m_closeTabAction);
+
+    QMenu* helpMenu = menuBar()->addMenu(tr("Yardım"));
+    helpMenu->addAction(tr("Hakkında..."), this, &MainWindow::onShowAbout);
+    helpMenu->addAction(tr("Değişiklikler..."), this, &MainWindow::onShowChangelog);
 
     statusBar()->showMessage(tr("Hazır"));
 }
@@ -990,6 +1014,137 @@ void MainWindow::onTabChanged(int index)
     }
 }
 
+void MainWindow::onToggleLeftPanel(bool show)
+{
+    if (!m_leftPanel || !m_splitter)
+        return;
+
+    // Kapatilirkken ayirici genislikleri korunur; acilirken ayni bolme
+    // genisligiyle geri gelir.
+    if (show)
+        m_leftPanel->setVisible(true);
+    else
+        m_panelSizes = m_splitter->sizes();
+
+    m_leftPanel->setVisible(show);
+
+    if (show) {
+        if (m_panelSizes.size() >= 2 && m_panelSizes.at(0) > 0)
+            m_splitter->setSizes(m_panelSizes);
+        statusBar()->showMessage(tr("Sol panel gösteriliyor"), 3000);
+    } else {
+        statusBar()->showMessage(tr("Sol panel gizlendi — Ctrl+Shift+L ya da araç çubuğu düğmesiyle geri açılır"), 5000);
+    }
+}
+
+void MainWindow::onShowAbout()
+{
+    showAboutDialog(0);
+}
+
+void MainWindow::onShowChangelog()
+{
+    showAboutDialog(1);
+}
+
+void MainWindow::showAboutDialog(int tabIndex)
+{
+    QDialog dialog(this);
+    dialog.setWindowTitle(tr("xVNC Manager Hakkında"));
+    dialog.resize(640, 520);
+
+    auto* rootLayout = new QVBoxLayout(&dialog);
+
+    // Ust baslik: uygulama ikonu + ad + surum (VERSION dosyasindan)
+    auto* headLayout = new QHBoxLayout;
+    auto* iconLabel = new QLabel(&dialog);
+    iconLabel->setPixmap(QIcon(QStringLiteral(":/app.ico")).pixmap(48, 48));
+    auto* titleLabel = new QLabel(tr("<h2 style=\"margin: 0;\">xVNC Manager</h2>"
+                                      "<p style=\"margin: 0;\">Sürüm %1</p>")
+                                      .arg(QStringLiteral(XVNCRM_VERSION)), &dialog);
+    headLayout->addWidget(iconLabel);
+    headLayout->addWidget(titleLabel);
+    headLayout->addStretch(1);
+    rootLayout->addLayout(headLayout);
+
+    // Icerik: Hakkinda + Degisiklikler su sekmeleri
+    auto* tabs = new QTabWidget(&dialog);
+    auto* aboutView = new QTextBrowser(tabs);
+    aboutView->setOpenExternalLinks(false);
+    aboutView->setHtml(aboutDialogHtml());
+    auto* changeView = new QTextBrowser(tabs);
+    changeView->setOpenExternalLinks(false);
+    changeView->setHtml(changelogDialogHtml());
+    tabs->addTab(aboutView, tr("Hakkında"));
+    tabs->addTab(changeView, tr("Değişiklikler"));
+    tabs->setCurrentIndex(tabIndex);
+    rootLayout->addWidget(tabs, 1);
+
+    auto* closeButton = new QPushButton(tr("Kapat"), &dialog);
+    closeButton->setDefault(true);
+    connect(closeButton, &QPushButton::clicked, &dialog, &QDialog::accept);
+    rootLayout->addWidget(closeButton, 0, Qt::AlignRight);
+
+    dialog.exec();
+}
+
+QString MainWindow::aboutDialogHtml()
+{
+    return tr(
+        "<p><b>Ne için yapıldı:</b></p>"
+        "<p>Uzak masaüstlerine (VNC sunucularına) hızlı ve güvenli bağlanmak, "
+        "kayıtlı bağlantıları gruplandırmak ve çoklu sekmelerde aynı anda "
+        "birden çok oturumu yönetmek için bir bağlantı yöneticisi ve "
+        "görüntüleyicidir. TightVNC 2.x dosya transferi desteğiyle dosya "
+        "indirme/yükleme de pencere içinden yapılır.</p>"
+
+        "<p><b>Neyle yapıldı:</b></p>"
+        "<ul>"
+        "<li>C++17 ve Qt Widgets — Qt 6.8.3 LTS, <b>tek exe statik</b> derleme</li>"
+        "<li>RFB istemcisi: <b>libvncclient</b> (LibVNCServer istemci kitaplığı; "
+        "vcpkg overlay port + yama)</li>"
+        "<li>Görüntü sıkıştırma: zlib ve libjpeg-turbo (Tight kodlaması)</li>"
+        "<li>Derleme: CMake + Ninja + MSVC (VS2019 BuildTools), vcpkg ile "
+        "bağımlılık yönetimi</li>"
+        "<li>Sürüm: kokekteki <b>VERSION</b> dosyasından üretilir, her "
+        "derlemede 1 artırılır (0.99.x)</li>"
+        "</ul>"
+
+        "<p><b>Kim yaptı:</b></p>"
+        "<p>Geliştiren: <b>MiMo with Şahin AKIN</b> · proje: "
+        "github.com/strdex/VNCManager</p>"
+
+        "<p><small>Çalıştığı sunucular: TightVNC 2.x (tam destek + dosya "
+        "transferi), TigerVNC/TurboVNC/RealVNC (standart RFB), UltraVNC "
+        "(görüntüleme), x11vnc ve LibVNCServer tabanlı sunucular.</small></p>");
+}
+
+QString MainWindow::changelogDialogHtml()
+{
+    return tr(
+        "<p><b>0.99.5 – 0.99.6</b> — <b>Yardım menüsü</b> eklendi: "
+        "“Hakkında” ve “Değişiklikler” pencereleri.</p>"
+
+        "<p><b>0.99.3 – 0.99.4</b> — <b>Sol panel kapatılabilir</b>: bağlantı "
+        "listesi Ctrl+Shift+L, araç çubuğu düğmesi veya Görünüm menüsünden "
+        "gizlenip geri getirilir; durumu sonraki açılışta korunur, açılışta "
+        "önceki genişliğiyle döner. Uzak ekranda kontrol modundayken de "
+        "kısayol çalışır.</p>"
+
+        "<p><b>0.99.1 – 0.99.2</b> — <b>Klavye girişi uzak sisteme iletilir</b>: "
+        "Del, Ctrl+C/V/X, Ctrl+W, Ctrl+N, Ctrl+0/1, Ctrl+Tab, F5 artık uzak "
+        "ekrana gider; pencere kısayolları kontrol modunda pasifleştirilir. "
+        "Uygulamada kalanlar: F11, Ctrl+Shift+C/V/F/L, Ctrl+tekerlek. "
+        "Sürüm numarası VERSION dosyasından üretilip her derlemede bir artar; "
+        "derleme no exe özelliklerinde görünür.</p>"
+
+        "<p><b>0.99</b> — <b>İlk sürüm</b>: bağlantı profilleri ve gruplar, "
+        "hızlı bağlan, çoklu sekme, izleme/kontrol modu, ölçeklendirme "
+        "(sığdır/1:1/yakınlaştırma), tam ekran, çift yönlü pano eşitleme, "
+        "Ctrl+Alt+Del ve Windows tuşu gönderimi, TightVNC 2.x dosya "
+        "transferi, bağlantı listesini içe/dışa aktarma.</p>");
+}
+
 void MainWindow::updateScalingActions()
 {
     // buildUi sirasinda sekmeler eklenirken currentChanged sinyali tetiklenir;
@@ -1069,6 +1224,8 @@ void MainWindow::closeEvent(QCloseEvent* event)
     QSettings settings;
     settings.setValue(QStringLiteral("window/geometry"), saveGeometry());
     settings.setValue(QStringLiteral("window/state"), saveState());
+    settings.setValue(QStringLiteral("window/leftPanel"),
+                      m_panelAction ? m_panelAction->isChecked() : true);
     settings.sync();
 
     // Oturumlari temizce kapat

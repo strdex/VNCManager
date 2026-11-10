@@ -454,8 +454,8 @@ void VncView::wheelEvent(QWheelEvent* event)
 bool VncView::claimsKey(const QKeyEvent* event) const
 {
     // Penceredeki kisayollar yalnizca goruntuleyici disi islevler icin
-    // ayrilir: F11 (tam ekran) ve pano/dosya transferi kombinasyonlari
-    // (Ctrl+Shift+C/V/F). Bunlar disindaki her tus kontrol modunda uzak
+    // ayrilmistir: F11 (tam ekran) ve pano/dosya/sol panel kombinasyonlari
+    // (Ctrl+Shift+C/V/F/L). Bunlar disindaki her tus kontrol modunda uzak
     // sisteme gonderilir; boylece Del, Ctrl+C, Ctrl+V, Ctrl+W gibi tuslar
     // uygulama eylemleri tarafindan yutulmaz.
     if (event->key() == Qt::Key_F11)
@@ -467,6 +467,7 @@ bool VncView::claimsKey(const QKeyEvent* event) const
         case Qt::Key_C:
         case Qt::Key_V:
         case Qt::Key_F:
+        case Qt::Key_L:   // sol paneli ac/kapa (MainWindow)
             return false;
         default:
             break;
