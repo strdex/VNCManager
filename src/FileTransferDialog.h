@@ -105,6 +105,7 @@ private:
     QPushButton* m_localMkdir = nullptr;
     QPushButton* m_localRemove = nullptr;
     QPushButton* m_localRefresh = nullptr;
+    QPushButton* m_localDrives = nullptr;
 
     // Uzak pano
     QLineEdit* m_remotePathEdit = nullptr;
@@ -114,6 +115,7 @@ private:
     QPushButton* m_remoteMkdir = nullptr;
     QPushButton* m_remoteRemove = nullptr;
     QPushButton* m_remoteRefresh = nullptr;
+    QPushButton* m_remoteDrives = nullptr;
 
     // Aktarma
     QPushButton* m_uploadButton = nullptr;    // >>

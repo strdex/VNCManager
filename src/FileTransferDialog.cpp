@@ -6,6 +6,7 @@
 #include <QFileInfo>
 #include <QGuiApplication>
 #include <QHBoxLayout>
+#include <QGroupBox>
 #include <QHeaderView>
 #include <QInputDialog>
 #include <QLabel>
@@ -80,6 +81,7 @@ FileTransferDialog::FileTransferDialog(VncSession* session, const QString& serve
         list->setHeaderLabels({tr("Ad"), tr("Boyut"), tr("Değişiklik")});
         list->setRootIsDecorated(false);
         list->setAlternatingRowColors(true);
+        list->setUniformRowHeights(true);
         list->setSelectionMode(QAbstractItemView::SingleSelection);
         list->setSortingEnabled(false);
         list->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -90,21 +92,28 @@ FileTransferDialog::FileTransferDialog(VncSession* session, const QString& serve
     };
 
     // ---- sol pano: yerel bilgisayar ----------------------------------------
-    auto* localTitle = new QLabel(tr("Yerel Bilgisayar (İstemci)"), this);
-    localTitle->setStyleSheet(QStringLiteral("font-weight: bold;"));
+    m_localDrives = new QPushButton(tr("Sürücüler"), this);
+    m_localDrives->setToolTip(tr("Başlangıç düzeyi: sürücü listesi"));
+    connect(m_localDrives, &QPushButton::clicked, this, [this] {
+        navigateLocal(QStringLiteral("/"));
+    });
 
     m_localPathEdit = new QLineEdit(this);
-    m_localPathEdit->setPlaceholderText(tr("Yerel dizin, örn. C:/Kullanicilar"));
+    m_localPathEdit->setPlaceholderText(tr("Yerel dizin — Enter ile klasörü aç"));
     connect(m_localPathEdit, &QLineEdit::returnPressed, this, [this] {
         navigateLocal(m_localPathEdit->text().trimmed());
     });
 
-    m_localUp = new QPushButton(QStringLiteral("Üst"), this);
+    m_localUp = new QPushButton(QStringLiteral("↑"), this);
+    m_localUp->setFixedWidth(30);
+    m_localUp->setToolTip(tr("Bir üst klasöre çık (..)"));
     connect(m_localUp, &QPushButton::clicked, this, &FileTransferDialog::localUp);
 
     auto* localPathRow = new QHBoxLayout;
+    localPathRow->setSpacing(4);
     localPathRow->addWidget(m_localPathEdit, 1);
     localPathRow->addWidget(m_localUp);
+    localPathRow->addWidget(m_localDrives);
 
     createPane(m_localList);
     connect(m_localList, &QTreeWidget::itemDoubleClicked, this,
@@ -122,51 +131,64 @@ FileTransferDialog::FileTransferDialog(VncSession* session, const QString& serve
     connect(m_localRefresh, &QPushButton::clicked, this, &FileTransferDialog::refreshLocal);
 
     auto* localButtonRow = new QHBoxLayout;
+    localButtonRow->setSpacing(4);
     localButtonRow->addWidget(m_localRename);
     localButtonRow->addWidget(m_localMkdir);
     localButtonRow->addWidget(m_localRemove);
     localButtonRow->addStretch(1);
     localButtonRow->addWidget(m_localRefresh);
 
-    auto* leftColumn = new QVBoxLayout;
-    leftColumn->addWidget(localTitle);
-    leftColumn->addLayout(localPathRow);
-    leftColumn->addWidget(m_localList, 1);
-    leftColumn->addLayout(localButtonRow);
+    auto* leftColumn = new QGroupBox(tr("Yerel Bilgisayar (İstemci)"), this);
+    auto* localLayout = new QVBoxLayout(leftColumn);
+    localLayout->setContentsMargins(8, 10, 8, 8);
+    localLayout->setSpacing(6);
+    localLayout->addLayout(localPathRow);
+    localLayout->addWidget(m_localList, 1);
+    localLayout->addLayout(localButtonRow);
 
     // ---- orta kolon: aktarma dugmeleri --------------------------------------
     m_uploadButton = new QPushButton(QStringLiteral(">>"), this);
     m_downloadButton = new QPushButton(QStringLiteral("<<"), this);
     m_uploadButton->setToolTip(tr("Seçili dosyayı sunucuya yükle"));
     m_downloadButton->setToolTip(tr("Seçili dosyayı bu bilgisayara indir"));
-    m_uploadButton->setFixedWidth(48);
-    m_downloadButton->setFixedWidth(48);
+    m_uploadButton->setFixedSize(56, 40);
+    m_downloadButton->setFixedSize(56, 40);
+    m_uploadButton->setStyleSheet(QStringLiteral("font-weight: 700; font-size: 15px;"));
+    m_downloadButton->setStyleSheet(QStringLiteral("font-weight: 700; font-size: 15px;"));
     connect(m_uploadButton, &QPushButton::clicked, this, &FileTransferDialog::uploadSelected);
     connect(m_downloadButton, &QPushButton::clicked, this,
             &FileTransferDialog::downloadSelected);
 
     auto* midColumn = new QVBoxLayout;
     midColumn->addStretch(1);
-    midColumn->addWidget(m_uploadButton);
-    midColumn->addWidget(m_downloadButton);
+    midColumn->addWidget(m_uploadButton, 0, Qt::AlignHCenter);
+    midColumn->addSpacing(10);
+    midColumn->addWidget(m_downloadButton, 0, Qt::AlignHCenter);
     midColumn->addStretch(1);
 
     // ---- sag pano: uzak bilgisayar ------------------------------------------
-    auto* remoteTitle = new QLabel(tr("Uzak Bilgisayar (Sunucu)"), this);
-    remoteTitle->setStyleSheet(QStringLiteral("font-weight: bold;"));
+    m_remoteDrives = new QPushButton(tr("Sürücüler"), this);
+    m_remoteDrives->setToolTip(tr("Başlangıç düzeyi: sürücü listesi"));
+    connect(m_remoteDrives, &QPushButton::clicked, this, [this] {
+        navigateRemote(QStringLiteral("/"));
+    });
 
     m_remotePathEdit = new QLineEdit(this);
-    m_remotePathEdit->setPlaceholderText(tr("Uzak dizin, örn. C:/Kullanicilar"));
+    m_remotePathEdit->setPlaceholderText(tr("Uzak dizin — Enter ile klasörü aç"));
     connect(m_remotePathEdit, &QLineEdit::returnPressed, this, [this] {
         navigateRemote(m_remotePathEdit->text().trimmed());
     });
 
-    m_remoteUp = new QPushButton(QStringLiteral("Üst"), this);
+    m_remoteUp = new QPushButton(QStringLiteral("↑"), this);
+    m_remoteUp->setFixedWidth(30);
+    m_remoteUp->setToolTip(tr("Bir üst klasöre çık (..)"));
     connect(m_remoteUp, &QPushButton::clicked, this, &FileTransferDialog::remoteUp);
 
     auto* remotePathRow = new QHBoxLayout;
+    remotePathRow->setSpacing(4);
     remotePathRow->addWidget(m_remotePathEdit, 1);
     remotePathRow->addWidget(m_remoteUp);
+    remotePathRow->addWidget(m_remoteDrives);
 
     createPane(m_remoteList);
     connect(m_remoteList, &QTreeWidget::itemDoubleClicked, this,
@@ -184,23 +206,26 @@ FileTransferDialog::FileTransferDialog(VncSession* session, const QString& serve
     connect(m_remoteRefresh, &QPushButton::clicked, this, &FileTransferDialog::refreshRemote);
 
     auto* remoteButtonRow = new QHBoxLayout;
+    remoteButtonRow->setSpacing(4);
     remoteButtonRow->addWidget(m_remoteRename);
     remoteButtonRow->addWidget(m_remoteMkdir);
     remoteButtonRow->addWidget(m_remoteRemove);
     remoteButtonRow->addStretch(1);
     remoteButtonRow->addWidget(m_remoteRefresh);
 
-    auto* rightColumn = new QVBoxLayout;
-    rightColumn->addWidget(remoteTitle);
-    rightColumn->addLayout(remotePathRow);
-    rightColumn->addWidget(m_remoteList, 1);
-    rightColumn->addLayout(remoteButtonRow);
+    auto* rightColumn = new QGroupBox(tr("Uzak Bilgisayar (Sunucu)"), this);
+    auto* remoteLayout = new QVBoxLayout(rightColumn);
+    remoteLayout->setContentsMargins(8, 10, 8, 8);
+    remoteLayout->setSpacing(6);
+    remoteLayout->addLayout(remotePathRow);
+    remoteLayout->addWidget(m_remoteList, 1);
+    remoteLayout->addLayout(remoteButtonRow);
 
     // ---- alt satir: ilerleme + iptal ----------------------------------------
     m_progress = new QProgressBar(this);
     m_progress->setRange(0, 1000);
     m_progress->setValue(0);
-    m_progress->setFixedHeight(14);
+    m_progress->setFixedHeight(12);
 
     m_status = new QLabel(this);
     m_status->setTextInteractionFlags(Qt::TextSelectableByMouse);
@@ -209,25 +234,25 @@ FileTransferDialog::FileTransferDialog(VncSession* session, const QString& serve
     m_cancelButton = new QPushButton(tr("İptal"), this);
     connect(m_cancelButton, &QPushButton::clicked, this, &FileTransferDialog::cancelTransfer);
 
-    auto* bottomLayout = new QVBoxLayout;
-    bottomLayout->addWidget(m_progress);
-    bottomLayout->addWidget(m_status);
+    auto* bottomText = new QVBoxLayout;
+    bottomText->setSpacing(2);
+    bottomText->addWidget(m_progress);
+    bottomText->addWidget(m_status);
 
     auto* bottomRow = new QHBoxLayout;
-    bottomRow->addLayout(bottomLayout, 1);
-    bottomRow->addWidget(m_cancelButton);
+    bottomRow->addLayout(bottomText, 1);
+    bottomRow->addWidget(m_cancelButton, 0, Qt::AlignVCenter);
 
     // ---- genel duzen ---------------------------------------------------------
     auto* mainRow = new QHBoxLayout;
-    mainRow->addLayout(leftColumn, 1);
-    mainRow->addSpacing(8);
+    mainRow->setSpacing(10);
+    mainRow->addWidget(leftColumn, 1);
     mainRow->addLayout(midColumn);
-    mainRow->addSpacing(8);
-    mainRow->addLayout(rightColumn, 1);
+    mainRow->addWidget(rightColumn, 1);
 
     auto* layout = new QVBoxLayout(this);
+    layout->setSpacing(8);
     layout->addLayout(mainRow, 1);
-    layout->addSpacing(6);
     layout->addLayout(bottomRow);
 
     // ---- oturum sinyalleri ----------------------------------------------------
@@ -249,14 +274,15 @@ FileTransferDialog::FileTransferDialog(VncSession* session, const QString& serve
     }
 
     // ---- acilis durumu --------------------------------------------------------
+    // Pencere her acilista ilk seviyeden (surucu listesi) baslar; eski
+    // derlemelerin sakladigi "son klasor" ayari kalici olarak temizlenir.
+    QSettings settings;
+    settings.remove(QStringLiteral("fileTransfer/startPath"));
+
     setBusy(false);
     navigateLocal(QStringLiteral("/"));
-
-    QSettings settings;
-    const QString startPath = settings.value(QStringLiteral("fileTransfer/startPath"),
-                                             QStringLiteral("C:/")).toString();
     if (m_session)
-        navigateRemote(startPath);
+        navigateRemote(QStringLiteral("/"));
 }
 
 // ---------------------------------------------------------------------------
@@ -394,9 +420,6 @@ void FileTransferDialog::navigateRemote(const QString& path)
 
     m_remotePath = normalized;
     m_remotePathEdit->setText(m_remotePath);
-
-    QSettings settings;
-    settings.setValue(QStringLiteral("fileTransfer/startPath"), m_remotePath);
 
     setBusy(true);
     setStatus(tr("Uzak listeleniyor: %1").arg(m_remotePath));
@@ -1072,6 +1095,7 @@ void FileTransferDialog::setBusy(bool busy)
     m_localMkdir->setEnabled(!busy);
     m_localRemove->setEnabled(!busy);
     m_localRefresh->setEnabled(!busy);
+    m_localDrives->setEnabled(!busy);
     m_localList->setEnabled(!busy);
 
     // Uzak pano oturuma bagli
@@ -1081,6 +1105,7 @@ void FileTransferDialog::setBusy(bool busy)
     m_remoteMkdir->setEnabled(!busy && hasSession);
     m_remoteRemove->setEnabled(!busy && hasSession);
     m_remoteRefresh->setEnabled(!busy && hasSession);
+    m_remoteDrives->setEnabled(!busy && hasSession);
     m_remoteList->setEnabled(hasSession);
 
     m_uploadButton->setEnabled(!busy && hasSession);
