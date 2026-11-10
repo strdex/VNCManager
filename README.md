@@ -46,12 +46,22 @@ panelli dosya transferi** (TightVNC 2'nin 0xFC alt protokolü). Arayüz Türkçe
 - Dosya transferi yalnız sunucuda etkinse görünür (etkileşim yetenekleri
   `ft=var` olarak tespit edilir)
 
+### Dil / Yerelleştirme
+- Arayüz dili **Görünüm → Dil** menüsünden seçilir: *Türkçe* (kaynak dil) veya
+  *English*
+- Tercih `QSettings` içinde saklanır (`app/language`) ve anında uygulanmaz:
+  **uygulama yeniden başlatıldığında geçerli olur** — menüden hemen
+  yeniden başlatılabilir ya da ertelenebilir
+- **English** seçkinliyken tüm menüler, diyaloglar, durum iletileri ve
+  dosya transferi iletileri İngilizce görünür (çeviri `.qm` kaynak
+  dosyasına gömülüdür, ayrı dosya gerekmez)
+
 ### Uygulama
 - **Tek exe statik dağıtım: 17,5 MB** (DLL gerekmez) veya DLL'li dinamik sürüm
 - SVG araç çubuğu ikonları, uygulama ikonu, koyu modern görünüm
 - EXE özelliklerinde sürüm ve derleme bilgisi: *xVNC Manager · 0.99.x ·
   Geliştiren MiMo with Şahin AKIN*
-- Türkçe arayüz; hata ayıklama günlüğü `build\xvncmanager.log`
+- Türkçe/İngilizce arayüz; hata ayıklama günlüğü `build\xvncmanager.log`
 
 ---
 
@@ -138,6 +148,26 @@ otomatik kurulur; elle kurmak isterseniz:
 
 Preset'ler: `default` (release), `debug`, `release-static` — hepsi Ninja +
 `vcvars64.bat` ortamı ister.
+
+### Çeviri güncelleme (i18n)
+
+Kaynak dizgiler `src/*.cpp`'deki `tr()` çağrılarından toplanır. Qt'nin
+`lupdate` aracı bu kurulumda çalışmadığı için (Qt6Qml.dll bağımlılığı)
+kendi betiğimiz kullanılır — çeviriler hash anahtarlı
+`translations/en.tsv` dosyasında tutulur:
+
+```powershell
+.\translations\i18n.ps1 extract   # tr() dizgilerini translations\sources.txt'e çıkarır
+.\translations\i18n.ps1 release   # i18n_en.ts + resources\translations\i18n_en.qm üretir
+```
+
+- **Yeni dizgi eklediğinizde:** önce `extract`, sonra `translations\en.tsv`
+  içine yeni dizgiyi `<hash><TAB><İngilizce çeviri>` satırı olarak ekleyin
+  (hash'i `sources.txt`'ten kopyalayın; çeviride `@N@` = yeni satır,
+  `@T@` = sekme), en son `release` — çıktı `CEVIRI: x / x` olmalı.
+- `.qm` dosyası `resources.qrc` aracılığıyla exe'ye gömülür; ayrı dağıtım
+  dosyası gerekmez. `lrelease`, Qt kurulumunuzdaki (`msvc2022_64\bin`)
+  çalışır çeviri aracıdır.
 
 ---
 

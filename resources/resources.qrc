@@ -17,5 +17,6 @@
         <file>icons/transfer.svg</file>
         <file>icons/fullscreen.svg</file>
         <file>icons/panel.svg</file>
+        <file>translations/i18n_en.qm</file>
     </qresource>
 </RCC>

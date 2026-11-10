@@ -6,6 +6,7 @@
 #include "VncView.h"
 
 #include <QAction>
+#include <QActionGroup>
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDialog>
@@ -22,6 +23,7 @@
 #include <QMap>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QProcess>
 #include <QPushButton>
 #include <QScrollArea>
 #include <QSettings>
@@ -281,6 +283,27 @@ void MainWindow::buildUi()
     viewMenu->addAction(m_actualSizeAction);
     viewMenu->addSeparator();
     viewMenu->addAction(m_cursorAction);
+
+    // Dil: tercih QSettings("app/language") icinde saklanir ve uygulama
+    // yeniden baslatildiginda gecerli olur (Cevirici main.cpp'de yuklenir).
+    // Dil adlari cevrilmez: her dil kendi adinda gorunur.
+    QMenu* languageMenu = viewMenu->addMenu(tr("Dil"));
+    auto* langGroup = new QActionGroup(languageMenu); // varsayilan: ayristirilabilir, tek secim
+    const QString language =
+        QSettings().value(QStringLiteral("app/language"), QStringLiteral("tr")).toString();
+    const QList<QPair<QString, QString>> langs = {
+        { QStringLiteral("tr"), QStringLiteral("Türkçe") },
+        { QStringLiteral("en"), QStringLiteral("English") },
+    };
+    for (const auto& lang : langs) {
+        QAction* langAction = languageMenu->addAction(lang.second);
+        langAction->setCheckable(true);
+        langAction->setChecked(language == lang.first);
+        langGroup->addAction(langAction);
+        const QString code = lang.first;
+        connect(langAction, &QAction::triggered, this,
+                [this, code] { onChangeLanguage(code); });
+    }
 
     QMenu* keysMenu = menuBar()->addMenu(tr("Tuşlar"));
     keysMenu->addAction(m_cadAction);
@@ -1088,6 +1111,35 @@ void MainWindow::showAboutDialog(int tabIndex)
     dialog.exec();
 }
 
+void MainWindow::onChangeLanguage(const QString& lang)
+{
+    const QString current =
+        QSettings().value(QStringLiteral("app/language"), QStringLiteral("tr")).toString();
+    if (lang == current)
+        return;
+
+    QMessageBox ask(QMessageBox::Information, tr("Dil değişti"),
+                    tr("Dil değişikliği, uygulama yeniden başlatıldığında "
+                       "geçerli olur.\n\nUygulama yeniden başlatılsın mı?"),
+                    QMessageBox::NoButton, this);
+    QPushButton* restart = ask.addButton(tr("Yeniden başlat"), QMessageBox::AcceptRole);
+    ask.addButton(tr("Sonra"), QMessageBox::RejectRole);
+    ask.setDefaultButton(restart);
+    ask.exec();
+
+    // Tercih her iki durumda da saklanir; "Sonra" secilirse bir sonraki
+    // acilista gecerli olur.
+    QSettings().setValue(QStringLiteral("app/language"), lang);
+    statusBar()->showMessage(tr("Dil tercihi kaydedildi"));
+
+    if (ask.clickedButton() == restart) {
+        const QString exe = QCoreApplication::applicationFilePath();
+        const QStringList args = QCoreApplication::arguments().mid(1);
+        QProcess::startDetached(exe, args);
+        close(); // closeEvent ayarlari kaydeder
+    }
+}
+
 QString MainWindow::aboutDialogHtml()
 {
     return tr(
@@ -1106,7 +1158,7 @@ QString MainWindow::aboutDialogHtml()
         "<li>Görüntü sıkıştırma: zlib ve libjpeg-turbo (Tight kodlaması)</li>"
         "<li>Derleme: CMake + Ninja + MSVC (VS2019 BuildTools), vcpkg ile "
         "bağımlılık yönetimi</li>"
-        "<li>Sürüm: kokekteki <b>VERSION</b> dosyasından üretilir, her "
+        "<li>Sürüm: kökteki <b>VERSION</b> dosyasından üretilir, her "
         "derlemede 1 artırılır (0.99.x)</li>"
         "</ul>"
 
@@ -1121,9 +1173,15 @@ QString MainWindow::aboutDialogHtml()
 
 QString MainWindow::changelogDialogHtml()
 {
-    return tr(
-        "<p><b>0.99.9 – 0.99.10</b> — <b>Değişiklikler penceresi</b> son "
-        "derlemelerle güncellendi: dosya transferi düzeltmesi listeye işlendi.</p>"
+    return tr("<p><b>0.99.11 – 0.99.12</b> — <b>İngilizce çeviri</b>: arayüzün "
+           "tamamı artık İngilizce de çalışabilir; dil Görünüm menüsünden "
+           "seçilir, tercih hatırlanır ve uygulama yeniden başlatıldığında "
+           "geçerli olur. Değişiklikler penceresi son derlemeleri kaydeder, "
+           "Hakkında penceresine küçük bir yazım düzeltmesi yapıldı.</p>"
+
+           "<p><b>0.99.9 – 0.99.10</b> — <b>Değişiklikler penceresi</b> son "
+           "derlemelerle güncellendi: dosya transferi düzeltmesi listeye "
+           "işlendi.</p>"
 
         "<p><b>0.99.7 – 0.99.8</b> — <b>Dosya transferi penceresi</b>: artık her "
         "açılışta sürücü seviyesinden başlar; son açılan klasörün hatırlanması "

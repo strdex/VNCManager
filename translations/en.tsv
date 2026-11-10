@@ -1,0 +1,273 @@
+# i18n_en cevirileri - hash<tab>ceviri  (@N@ yeni satir, @T@ tab)
+B3074CE6	Connection Settings
+C960E30C	IP or computer name (e.g. 192.168.1.10)
+24387C7D	e.g. Field, Office — defaults to the “General” group if left empty
+98F533BB	Store the password in the connection file (plain text — the file may be shared)
+D6699B3E	View only (no mouse or keyboard) — recommended
+B0007A09	Share the session with other viewers
+E0B295AB	Fit to window
+5523F04F	Scale 100% (1:1)
+BB5B41FB	Fixed zoom
+11C0282	 %
+9D3226B6	Name:
+6880977E	Server (IP or hostname):
+72BB6C71	Group:
+AAEAD717	Password:
+FE5ACA91	Viewing:
+3D68F3D0	Zoom:
+EEF191EC	Note: the TightVNC server must have a VNC password defined.
+6A15E9E9	Missing information
+65649675	The server address cannot be left empty.
+339AA441	Fit to window (%1%)
+1452CFA3	Actual size, 1:1
+844D68E1	Fixed zoom (%1%)
+6A44FD25	—
+A1CEA730	%1 h %2 m %3 s
+C60D03E4	%1 m %2 s
+75D4B838	%1 s
+98E0D6E2	Connection Details — %1
+5492ACDA	Device:
+6584F78A	Server:
+38E1A907	Group:
+33251128	Desktop:
+3F50C857	Resolution:
+F507624B	Viewing:
+4E4767A0	Input:
+A076EEFA	Remote cursor:
+EE0CD500	Status:
+5DAC487D	Session time:
+B8ACFAD0	General
+A4B6C685	Session closed
+514BBE28	(connecting)
+39061C15	View only (watching)
+42F02655	Control (mouse and keyboard active)
+23DEA205	Shown (local cursor hidden)
+84E375E3	Hidden (local cursor shown)
+7B0CEA6A	Connected
+59D650E7	Disconnected
+8D2F30CE	File Transfer — %1
+F79C3CCD	Name
+90C26B59	Size
+81BC10DE	Modified
+F77CA319	Drives
+631394D0	Start level: drive list
+E66E3E90	Local directory — press Enter to open
+74FAE8E	Go up one folder (..)
+38A12659	Rename
+868E3593	Create folder
+AA424A7A	Delete
+C0E51626	Refresh
+8E817954	Local Computer (Client)
+C1A727E5	Upload the selected file to the server
+724E38E	Download the selected file to this computer
+FC147DE	Remote directory — press Enter to open
+FAA2A012	Remote Computer (Server)
+ACC4E4D	Cancel
+678EBD50	Session closed
+E92C7D8D	No session
+916EF51B	An operation is in progress
+3CE4D680	Directory not found: %1
+7EE7FB40	Local: %1 — %2 items
+9596EDAD	Enter a valid path
+5071916A	Fetching drives…
+E3EE0D0A	Listing remote: %1
+A2A7516	Remote: %1 — %2 items
+5C98D83D	Could not get the drive list
+DE001F07	Drives: %1
+1C16C824	Select a file on the left
+CA6751BF	Folder transfer is not supported; only files can be selected
+AA36032F	First open a folder (drive) on the right
+AD67648F	Uploading: %1 → %2
+44F6601	Select a file on the right
+4BBCEA1A	First open a folder (drive) on the left
+23ED7356	Downloading: %1 → %2
+C7B21AF8	Cancelling…
+62F98111	Select an item first
+7DBF849A	This item cannot be renamed
+B5EA6140	New name:
+6673BB38	The name must not contain '/'
+3F03C40F	Renamed: %1
+920FA658	Could not rename: %1
+E77D3F8	Open a drive first
+30A7BF9F	Folder name:
+B9231C31	Folder created: %1
+ABA64A8	Could not create folder: %1
+E0DF583D	This item cannot be deleted
+3E041B14	"%1" will be deleted. This cannot be undone.@N@@N@Delete it?
+14157E4E	Deleted: %1
+953380B3	Could not delete the folder (must be empty): %1
+A73A712D	Could not delete the folder: %1 — %2
+9A95F103	Could not delete the file: %1
+CD2C6EF8	Could not delete the file: %1 — %2
+C5E2728F	Select an item on the right first
+31841867	Renaming: %1
+146302CD	Creating folder: %1
+9D2092AF	Delete folder
+6F95B62D	Folder to delete: %1. The server refuses if the folder is not empty. Continue?
+A726C50B	Delete remote item
+D1A33E7E	The following will be deleted from the server:@N@%1@N@@N@This cannot be undone. Delete it?
+B680D426	Deleting: %1
+45792858	Copied to clipboard: %1
+D92EDB91	Copy path to clipboard
+C0E9DF94	Copy name to clipboard
+16C0937E	Upload to server…
+6FD941BF	Download…
+DC61DBAF	Rename…
+274BAE31	Create folder…
+1604A454	Delete…
+386076F2	%1 / %2  (%3%)
+7DD5E638	Sending %1…
+479E2148	File or folder not found.
+AA8A21C2	Access denied. (permissions)
+C1FDD38B	Another file with the same name exists.
+13CFDA	The file is in use by another process.
+E286DE0D	The target already exists.
+73C98D77	The folder is not empty; delete its contents first.
+A52D03A4	xVNC Manager
+A49CB9E7	IP or computer name (port: 5900)
+A1EAFB31	Connect
+6599853D	New
+AA91675C	Edit
+186E406A	Delete
+55BD4EE1	Saved Servers
+DD610713	Quick connect
+404F7AD0	To connect to a server:@N@• double-click a server in the list@N@• or press “Connect” on the toolbar above
+C0CD3C49	No connection
+918AFBF0	Main toolbar
+3CCD0A41	Disconnect
+BE6B584C	Disconnect and close the tab
+929D8044	File transfer
+21C8CF62	Browse the remote server, download/upload files (Ctrl+Shift+F)
+6618A927	Send Ctrl+Alt+Del
+17ECB53C	Send the Ctrl+Alt+Del keys to the server (for locked systems and screensavers)
+15E64056	Send the Windows key
+5A9AFB12	Send the Windows (Start) key to the server
+3E67AFBE	Zoom out
+5E303DDC	Zoom out (Ctrl+−, Ctrl+wheel)
+78305B1B	Zoom in
+48B61A7C	Zoom in (Ctrl++, Ctrl+wheel)
+41056292	Fit
+4CBCD123	Fit the picture to the window (Ctrl+0, double-click)
+9CC3B69C	Actual size
+99A43846	Show at actual size, 1:1 (Ctrl+1, double-click)
+F4A9B691	View only
+C652D3B0	View-only mode: mouse and keyboard are not sent to the server.@N@Press the button again to switch back to control mode.
+B247B081	Remote cursor
+47E2B87D	Show the server's cursor (the local cursor is hidden)
+8A35864D	Full screen
+710917C3	Connection details
+C643203E	Close tab
+9311FC0E	Left panel
+463E05DD	Show/hide the connection list (Ctrl+Shift+L)
+4D73505E	File
+2C6D7379	New connection...
+2CC05172	Edit connection...
+B22F34D2	Delete connection
+DBA0254	Export connection list...
+229B2784	Import connection list...
+FBB3EC25	Exit
+71A54B7E	View
+66908457	Language
+97807AFF	Keys
+458B5D1E	Clipboard
+1363794A	Paste from clipboard (send to server)
+6F97F625	Copy the server clipboard to this clipboard
+770F5C37	Clipboard sync is bidirectional and automatic; copied text is sent to the other side when it changes
+2395EE08	Window
+77711F20	Next tab
+8A938970	Help
+C42AA85B	About...
+72169C6F	Changelog...
+CE2518F6	Ready
+CAF95BF	General
+FAF09E39	%1 server(s)
+CF46D972	 (view only)
+D9BD31EB	First select a connection in the list.
+937ED25A	First select a server in the list.
+47293C65	Delete the connection “%1”?
+C0619B6B	Expand all
+BE4F1708	Collapse all
+8DDA02A6	Rename (F2)
+6AECAD3A	Edit...
+B26D5032	Select a server to rename
+852EA2C0	Name the machine
+2F00DA4C	Display name for “%1”:
+446E721A	Export connection list
+AA31CEFD	JSON files (*.json)
+81F6061C	Export
+24EC8175	Could not copy the file:@N@%1
+49BD0940	Connection list saved: %1 — you can share this file with your team
+7E79D5BE	Import connection list
+2562E2A5	Import
+1F4C05CD	Could not read/copy the file:@N@%1
+E2E4E2D5	Could not move the file into place:@N@%1
+ABCBEF23	Connection list loaded: %1 (%2 entries)
+6B3A5FBF	Select a server in the list to connect
+641AADC3	Password required
+852CBCF6	VNC password for the server %1:
+81643ACA	 [offline]
+C9FE3280	Connection closed: %1
+1B339ECF	Connecting: %1
+A68B0951	Added to the list: %1 — press F2 to name it
+A11EA1AE	No session to close
+9BE54BB3	Ctrl+Alt+Del sent
+DE6B5F94	Windows key sent
+86A1CF08	Open a session first for details
+E5F858B	Connect first for file transfer
+B6CEFCC6	This server does not support file transfer.@N@@N@Check that file transfer is enabled on the server and that the VNC password is the full-access password (not the view-only password).
+9D97E687	No connected session
+3EB39DBA	The clipboard cannot be sent in view-only mode — switch to Control mode first
+F7921B8B	Clipboard content was sent to the server
+58BEA3D6	There is no text in the clipboard to send
+D32538B1	The server clipboard was copied to this clipboard
+131DA1C7	No clipboard text has arrived from the server yet
+DDF0D4F9	Left panel shown
+E60ABE6C	Left panel hidden — reopen with Ctrl+Shift+L or the toolbar button
+50BB46A1	About xVNC Manager
+369D1256	<h2 style="margin: 0;">xVNC Manager</h2><p style="margin: 0;">Version %1</p>
+C5795511	About
+91C26B59	Changelog
+3872CC71	Close
+61354E10	Language changed
+F4695526	The language change takes effect when the application is restarted.@N@@N@Restart the application now?
+4B9F763B	Restart
+B6D58B67	Later
+90D50949	Language preference saved
+710331D8	<p><b>What it is for:</b></p><p>A connection manager and viewer to reach remote desktops (VNC servers) quickly and securely, to group saved connections, and to run several sessions at once in tabs. File download/upload is also supported in the window thanks to TightVNC 2.x file transfer support.</p><p><b>What it is built with:</b></p><ul><li>C++17 and Qt Widgets — Qt 6.8.3 LTS, <b>single static exe</b> build</li><li>RFB client: <b>libvncclient</b> (LibVNCServer client library; vcpkg overlay port + patch)</li><li>Image compression: zlib and libjpeg-turbo (Tight encoding)</li><li>Build: CMake + Ninja + MSVC (VS2019 BuildTools) with vcpkg for dependency management</li><li>Version: produced from the <b>VERSION</b> file at the repo root, incremented by 1 on every build (0.99.x)</li></ul><p><b>Made by:</b></p><p>Developed by: <b>MiMo with Şahin AKIN</b> · project: github.com/strdex/VNCManager</p><p><small>Servers it works with: TightVNC 2.x (full support + file transfer), TigerVNC/TurboVNC/RealVNC (standard RFB), UltraVNC (viewing), x11vnc and LibVNCServer-based servers.</small></p>
+BE790091	<p><b>0.99.11 – 0.99.12</b> — <b>English translation</b>: the entire interface can now also run in English; the language is selected from the View menu, the preference is remembered and it takes effect when the application restarts. The ChangeLog window records the latest builds, and a small spelling fix was made in the About window.</p><p><b>0.99.9 – 0.99.10</b> — <b>Changelog window</b> updated with the recent builds: file transfer changes recorded.</p><p><b>0.99.7 – 0.99.8</b> — <b>File transfer window</b>: now starts at the drive level on every launch; remembering the last opened folder was removed. Panes were framed in group boxes, per-pane “↑” (up) and “Drives” buttons were added, transfer buttons were enlarged, margins and row layout were tightened.</p><p><b>0.99.5 – 0.99.6</b> — <b>Help menu</b> added: “About” and “Changelog” windows.</p><p><b>0.99.3 – 0.99.4</b> — <b>Collapsible left panel</b>: the connection list can be hidden and brought back with Ctrl+Shift+L, a toolbar button or the View menu; its state is kept across restarts and it returns with its previous width. The shortcut also works while controlling the remote screen.</p><p><b>0.99.1 – 0.99.2</b> — <b>Keyboard input is forwarded to the remote system</b>: Del, Ctrl+C/V/X, Ctrl+W, Ctrl+N, Ctrl+0/1, Ctrl+Tab, F5 now reach the remote screen; window shortcuts are disabled in control mode. What stays local: F11, Ctrl+Shift+C/V/F/L, Ctrl+wheel. The version number is produced from the VERSION file and incremented on every build; the build number is visible in the exe properties.</p><p><b>0.99</b> — <b>First release</b>: connection profiles and groups, quick connect, multiple tabs, view-only/control mode, scaling (fit/1:1/zoom), full screen, bidirectional clipboard sync, Ctrl+Alt+Del and Windows key sending, TightVNC 2.x file transfer, import/export of the connection list.</p>
+4084FBF9	Control
+DDAFC0FE	Fit to window (automatic scale)
+C49AE628	Actual size, 1:1
+35220571	Fixed zoom: %1%
+F81415E7	Could not create the RFB client
+F74C52BD	Connecting: %1
+1F49A04B	Could not connect to the server: %1
+85B82DF6	Could not read the server capability list
+66134A16	Connected: %1 (%2 x %3)
+5BFCF08A	The server connection was lost
+57045CEB	Could not process the server message
+75ED1ADD	The file operation was aborted because the connection was lost
+B974E1DD	Connection closed
+AC8C8957	No session is open
+E29904EE	The server did not respond to the file operation
+A93A1C79	Another file operation is in progress
+EBB2CEA4	Could not open the local file: %1
+F027D976	The operation was cancelled
+234DAB6A	Could not read the server response
+4BA5D822	Could not write the local file: %1
+61193D63	The server data is compressed in an unexpected way
+41BE6AE2	Could not write to the local disk (it may be full)
+432F1AA5	Download finished: %1
+D9151B07	Upload finished: %1
+2F90CEC3	Folder created
+8B490D10	Deleted
+2EE22A1D	Renamed
+CBFF80C7	The server refused the operation
+FD8D5AF5	Unexpected file transfer response from the server
+20EC5E25	The upload file was closed
+6DEE1390	Could not read the local file: %1
+35310CFE	Could not write data to the server
+7A77FCDE	Connecting: %1
+45C0FC68	View only
+7074FB3E	Connected: %1 x %2
+6CAE6213	Connection closed: %1

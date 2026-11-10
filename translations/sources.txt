@@ -1,0 +1,273 @@
+index|ctx|hash|satir|kaynak (@N@ yeni satir, @T@ tab)
+1|ConnectionDialog|B3074CE6|17|Bağlantı Ayarları
+2|ConnectionDialog|C960E30C|22|IP veya bilgisayar adı (örn. 192.168.1.10)
+3|ConnectionDialog|24387C7D|24|örn. Saha, Ofis — boş bırakılırsa “Genel” grubu
+4|ConnectionDialog|98F533BB|28|Şifreyi bağlantı dosyasına yaz (açık metin — dosya paylaşılabilsin)
+5|ConnectionDialog|D6699B3E|30|Yalnızca görüntüle (fare ve klavye kullanılamaz) — önerilen
+6|ConnectionDialog|B0007A09|32|Oturumu diğer görüntüleyicilerle paylaş
+7|ConnectionDialog|E0B295AB|36|Pencereye sığdır
+8|ConnectionDialog|5523F04F|37|Ölçek %100 (1:1)
+9|ConnectionDialog|BB5B41FB|38|Sabit yakınlaştırma
+10|ConnectionDialog|11C0282|44| %
+11|ConnectionDialog|9D3226B6|53|Ad:
+12|ConnectionDialog|6880977E|54|Sunucu (IP veya ad):
+13|ConnectionDialog|72BB6C71|55|Grup:
+14|ConnectionDialog|AAEAD717|56|Şifre:
+15|ConnectionDialog|FE5ACA91|57|Görüntüleme:
+16|ConnectionDialog|3D68F3D0|58|Yakınlaştırma:
+17|ConnectionDialog|EEF191EC|63|Not: TightVNC sunucusunda VNC şifresi tanımlı olmalıdır.
+18|ConnectionDialog|6A15E9E9|70|Eksik bilgi
+19|ConnectionDialog|65649675|70|Sunucu adresi boş bırakılamaz.
+20|ConnectionInfoDialog|339AA441|17|Pencereye sığdır (%1%)
+21|ConnectionInfoDialog|1452CFA3|19|Tam görüntüleme, 1:1
+22|ConnectionInfoDialog|844D68E1|21|Sabit yakınlaştırma (%1%)
+23|ConnectionInfoDialog|6A44FD25|30|—
+24|ConnectionInfoDialog|A1CEA730|37|%1 sa %2 dk %3 sn
+25|ConnectionInfoDialog|C60D03E4|39|%1 dk %2 sn
+26|ConnectionInfoDialog|75D4B838|40|%1 sn
+27|ConnectionInfoDialog|98E0D6E2|51|Bağlantı Bilgisi — %1
+28|ConnectionInfoDialog|5492ACDA|66|Cihaz:
+29|ConnectionInfoDialog|6584F78A|67|Sunucu:
+30|ConnectionInfoDialog|38E1A907|68|Grup:
+31|ConnectionInfoDialog|33251128|69|Masaüstü:
+32|ConnectionInfoDialog|3F50C857|70|Çözünürlük:
+33|ConnectionInfoDialog|F507624B|71|Görüntüleme:
+34|ConnectionInfoDialog|4E4767A0|72|Girdi:
+35|ConnectionInfoDialog|A076EEFA|73|Uzak imleç:
+36|ConnectionInfoDialog|EE0CD500|74|Durum:
+37|ConnectionInfoDialog|5DAC487D|75|Oturum süresi:
+38|ConnectionInfoDialog|B8ACFAD0|96|Genel
+39|ConnectionInfoDialog|A4B6C685|105|Oturum kapandı
+40|ConnectionInfoDialog|514BBE28|111|(bağlanıyor)
+41|ConnectionInfoDialog|39061C15|120|Yalnızca görüntüleme (izleme)
+42|ConnectionInfoDialog|42F02655|121|Kontrol (fare ve klavye aktif)
+43|ConnectionInfoDialog|23DEA205|123|Gösteriliyor (yerel imleç gizli)
+44|ConnectionInfoDialog|84E375E3|124|Gizli (yerel imleç görünür)
+45|ConnectionInfoDialog|7B0CEA6A|125|Bağlı
+46|ConnectionInfoDialog|59D650E7|125|Kopuk
+47|FileTransferDialog|8D2F30CE|72|Dosya Transferi — %1
+48|FileTransferDialog|F79C3CCD|81|Ad
+49|FileTransferDialog|90C26B59|81|Boyut
+50|FileTransferDialog|81BC10DE|81|Değişiklik
+51|FileTransferDialog|F77CA319|95|Sürücüler
+52|FileTransferDialog|631394D0|96|Başlangıç düzeyi: sürücü listesi
+53|FileTransferDialog|E66E3E90|102|Yerel dizin — Enter ile klasörü aç
+54|FileTransferDialog|74FAE8E|109|Bir üst klasöre çık (..)
+55|FileTransferDialog|38A12659|124|Yeniden adlandır
+56|FileTransferDialog|868E3593|125|Klasör oluştur
+57|FileTransferDialog|AA424A7A|126|Sil
+58|FileTransferDialog|C0E51626|127|Yenile
+59|FileTransferDialog|8E817954|141|Yerel Bilgisayar (İstemci)
+60|FileTransferDialog|C1A727E5|152|Seçili dosyayı sunucuya yükle
+61|FileTransferDialog|724E38E|153|Seçili dosyayı bu bilgisayara indir
+62|FileTransferDialog|FC147DE|177|Uzak dizin — Enter ile klasörü aç
+63|FileTransferDialog|FAA2A012|216|Uzak Bilgisayar (Sunucu)
+64|FileTransferDialog|ACC4E4D|234|İptal
+65|FileTransferDialog|678EBD50|270|Oturum kapandı
+66|FileTransferDialog|E92C7D8D|273|Oturum yok
+67|FileTransferDialog|916EF51B|366|Devam eden bir işlem var
+68|FileTransferDialog|3CE4D680|376|Dizin bulunamadı: %1
+69|FileTransferDialog|7EE7FB40|387|Yerel: %1 — %2 öğe
+70|FileTransferDialog|9596EDAD|408|Geçerli bir yol yazın
+71|FileTransferDialog|5071916A|416|Sürücüler alınıyor…
+72|FileTransferDialog|E3EE0D0A|425|Uzak listeleniyor: %1
+73|FileTransferDialog|A2A7516|542|Uzak: %1 — %2 öğe
+74|FileTransferDialog|5C98D83D|563|Sürücü listesi alınamadı
+75|FileTransferDialog|DE001F07|568|Sürücüler: %1
+76|FileTransferDialog|1C16C824|582|Soldan bir dosya seçin
+77|FileTransferDialog|CA6751BF|586|Klasör aktarımı desteklenmiyor; yalnızca dosya seçilebilir
+78|FileTransferDialog|AA36032F|590|Önce sağda bir klasöre (sürücüye) girin
+79|FileTransferDialog|AD67648F|599|Yükleniyor: %1 → %2
+80|FileTransferDialog|44F6601|610|Sağdan bir dosya seçin
+81|FileTransferDialog|4BBCEA1A|618|Önce solda bir klasöre (sürücüye) girin
+82|FileTransferDialog|23ED7356|627|İndiriliyor: %1 → %2
+83|FileTransferDialog|C7B21AF8|634|İptal ediliyor…
+84|FileTransferDialog|62F98111|646|Önce bir öğe seçin
+85|FileTransferDialog|7DBF849A|652|Bu öğe yeniden adlandırılamaz
+86|FileTransferDialog|B5EA6140|658|Yeni ad:
+87|FileTransferDialog|6673BB38|663|Ad '/' içermemeli
+88|FileTransferDialog|3F03C40F|672|Yeniden adlandırıldı: %1
+89|FileTransferDialog|920FA658|674|Yeniden adlandırılamadı: %1
+90|FileTransferDialog|E77D3F8|685|Önce bir sürücüye girin
+91|FileTransferDialog|30A7BF9F|691|Klasör adı:
+92|FileTransferDialog|B9231C31|702|Klasör oluşturuldu: %1
+93|FileTransferDialog|ABA64A8|704|Klasör oluşturulamadı: %1
+94|FileTransferDialog|E0DF583D|717|Bu öğe silinemez
+95|FileTransferDialog|3E041B14|726|"%1" silinecek. Bu işlem geri alınamaz.@N@@N@Silinsin mi?
+96|FileTransferDialog|14157E4E|734|Silindi: %1
+97|FileTransferDialog|953380B3|743|Klasör silinemedi (boş olmalı): %1
+98|FileTransferDialog|A73A712D|744|Klasör silinemedi: %1 — %2
+99|FileTransferDialog|9A95F103|746|Dosya silinemedi: %1
+100|FileTransferDialog|CD2C6EF8|747|Dosya silinemedi: %1 — %2
+101|FileTransferDialog|C5E2728F|759|Önce sağdan bir öğe seçin
+102|FileTransferDialog|31841867|782|Adlandırılıyor: %1
+103|FileTransferDialog|146302CD|810|Klasör oluşturuluyor: %1
+104|FileTransferDialog|9D2092AF|831|Klasörü sil
+105|FileTransferDialog|6F95B62D|832|Klasör silinecek: %1. Klasör boş değilse sunucu reddedecek. Devam edilsin mi?
+106|FileTransferDialog|A726C50B|839|Uzak öğeyi sil
+107|FileTransferDialog|D1A33E7E|840|Sunucudan silinecek:@N@%1@N@@N@Bu işlem geri alınamaz. Silinsin mi?
+108|FileTransferDialog|B680D426|848|Siliniyor: %1
+109|FileTransferDialog|45792858|892|Panoya kopyalandı: %1
+110|FileTransferDialog|D92EDB91|933|Yolunu panoya kopyala
+111|FileTransferDialog|C0E9DF94|934|Adını panoya kopyala
+112|FileTransferDialog|16C0937E|939|Sunucuya yükle…
+113|FileTransferDialog|6FD941BF|940|İndir…
+114|FileTransferDialog|DC61DBAF|943|Yeniden adlandır…
+115|FileTransferDialog|274BAE31|944|Klasör oluştur…
+116|FileTransferDialog|1604A454|945|Sil…
+117|FileTransferDialog|386076F2|994|%1 / %2  (%3%)
+118|FileTransferDialog|7DD5E638|1000|%1 gönderiliyor…
+119|FileTransferDialog|479E2148|1053|Dosya veya klasör bulunamadı.
+120|FileTransferDialog|AA8A21C2|1055|Erişim reddedildi. (yetki)
+121|FileTransferDialog|C1FDD38B|1057|Aynı adla başka bir dosya var.
+122|FileTransferDialog|13CFDA|1059|Dosya başka bir işlem tarafından kullanılıyor.
+123|FileTransferDialog|E286DE0D|1062|Hedef zaten var.
+124|FileTransferDialog|73C98D77|1064|Klasör boş değil; önce içeriğini silin.
+125|MainWindow|A52D03A4|46|xVNC Manager
+126|MainWindow|A49CB9E7|88|IP veya bilgisayar adı (port: 5900)
+127|MainWindow|A1EAFB31|89|Bağlan
+128|MainWindow|6599853D|95|Yeni
+129|MainWindow|AA91675C|96|Düzenle
+130|MainWindow|186E406A|97|Sil
+131|MainWindow|55BD4EE1|107|Kayıtlı Sunucular
+132|MainWindow|DD610713|114|Hızlı bağlan
+133|MainWindow|404F7AD0|131|Bir sunucuya bağlanmak için:@N@• listeden sunucuyu seçip çift tıklayın@N@• veya üstteki araç çubuğundan “Bağlan” deyin
+134|MainWindow|C0CD3C49|141|Bağlantı yok
+135|MainWindow|918AFBF0|154|Ana araç çubuğu
+136|MainWindow|3CCD0A41|164|Bağlantıyı kes
+137|MainWindow|BE6B584C|166|Bağlantıyı kes ve sekmeyi kapat
+138|MainWindow|929D8044|169|Dosya transferi
+139|MainWindow|21C8CF62|173|Uzak sunucuda gezin, dosya indir/yükle (Ctrl+Shift+F)
+140|MainWindow|6618A927|178|Ctrl+Alt+Del gönder
+141|MainWindow|17ECB53C|180|Ctrl+Alt+Del tuşlarını sunucuya gönder (kilitli/ekran koruyucu ekranlar için)
+142|MainWindow|15E64056|183|Windows tuşu gönder
+143|MainWindow|5A9AFB12|185|Windows (Başlat) tuşunu sunucuya gönder
+144|MainWindow|3E67AFBE|190|Uzaklaştır
+145|MainWindow|5E303DDC|192|Uzaklaştır (Ctrl+−, Ctrl+tekerlek)
+146|MainWindow|78305B1B|201|Yakınlaştır
+147|MainWindow|48B61A7C|203|Yakınlaştır (Ctrl++, Ctrl+tekerlek)
+148|MainWindow|41056292|206|Sığdır
+149|MainWindow|4CBCD123|209|Görüntüyü pencereye sığdır (Ctrl+0, çift tık)
+150|MainWindow|9CC3B69C|212|Tam görüntüle
+151|MainWindow|99A43846|215|Gerçek boyutta göster, 1:1 (Ctrl+1, çift tık)
+152|MainWindow|F4A9B691|220|İzleme
+153|MainWindow|C652D3B0|222|İzleme modu: fare ve klavye sunucuya gönderilmez.@N@Kontrol moduna geçmek için düğmeye tekrar basın.
+154|MainWindow|B247B081|226|Uzak imleç
+155|MainWindow|47E2B87D|229|Sunucunun imlecini göster (yerel imleç gizlenir)
+156|MainWindow|8A35864D|234|Tam ekran
+157|MainWindow|710917C3|239|Bağlantı bilgisi
+158|MainWindow|C643203E|244|Sekmeyi kapat
+159|MainWindow|9311FC0E|248|Sol panel
+160|MainWindow|463E05DD|252|Bağlantı listesini göster/gizle (Ctrl+Shift+L)
+161|MainWindow|4D73505E|255|Dosya
+162|MainWindow|2C6D7379|259|Yeni bağlantı...
+163|MainWindow|2CC05172|261|Bağlantıyı düzenle...
+164|MainWindow|B22F34D2|263|Bağlantıyı sil
+165|MainWindow|DBA0254|266|Bağlantı listesini dışa aktar...
+166|MainWindow|229B2784|268|Bağlantı listesini içe aktar...
+167|MainWindow|FBB3EC25|271|Çıkış
+168|MainWindow|71A54B7E|274|Görünüm
+169|MainWindow|66908457|290|Dil
+170|MainWindow|97807AFF|308|Tuşlar
+171|MainWindow|458B5D1E|314|Pano
+172|MainWindow|1363794A|315|Panodan yapıştır (sunucuya gönder)
+173|MainWindow|6F97F625|318|Sunucu panosunu panoya kopyala
+174|MainWindow|770F5C37|323|Pano eşitlemesi çift yönlü ve otomatiktir; kopyalanan metin değiştiğinde diğer tarafa iletilir
+175|MainWindow|2395EE08|327|Pencere
+176|MainWindow|77711F20|328|Sonraki sekme
+177|MainWindow|8A938970|335|Yardım
+178|MainWindow|C42AA85B|336|Hakkında...
+179|MainWindow|72169C6F|337|Değişiklikler...
+180|MainWindow|CE2518F6|339|Hazır
+181|MainWindow|CAF95BF|368|Genel
+182|MainWindow|FAF09E39|392|%1 sunucu
+183|MainWindow|CF46D972|399| (yalnızca görüntüleme)
+184|MainWindow|D9BD31EB|499|Önce listeden bir bağlantı seçin.
+185|MainWindow|937ED25A|522|Önce listeden bir sunucu seçin.
+186|MainWindow|47293C65|527|“%1” bağlantısı silinsin mi?
+187|MainWindow|C0619B6B|561|Tümünü aç
+188|MainWindow|BE4F1708|562|Tümünü kapat
+189|MainWindow|8DDA02A6|569|Yeniden adlandır (F2)
+190|MainWindow|6AECAD3A|571|Düzenle...
+191|MainWindow|B26D5032|582|Yeniden adlandırılacak bir sunucu seçin
+192|MainWindow|852EA2C0|592|Cihaza ad ver
+193|MainWindow|2F00DA4C|593|“%1” için görünecek ad:
+194|MainWindow|446E721A|615|Bağlantı listesini dışa aktar
+195|MainWindow|AA31CEFD|617|JSON dosyaları (*.json)
+196|MainWindow|81F6061C|623|Dışa aktarma
+197|MainWindow|24EC8175|624|Dosya kopyalanamadı:@N@%1
+198|MainWindow|49BD0940|628|Bağlantı listesi kaydedildi: %1 — bu dosyayı ekiple paylaşabilirsiniz
+199|MainWindow|7E79D5BE|635|Bağlantı listesini içe aktar
+200|MainWindow|2562E2A5|648|İçe aktarma
+201|MainWindow|1F4C05CD|649|Dosya okunamadı/kopyalanamadı:@N@%1
+202|MainWindow|E2E4E2D5|657|Dosya yerine konulamadı:@N@%1
+203|MainWindow|ABCBEF23|663|Bağlantı listesi yüklendi: %1 (%2 kayıt)
+204|MainWindow|6B3A5FBF|671|Bağlanmak için listeden bir sunucu seçin
+205|MainWindow|641AADC3|734|Şifre gerekli
+206|MainWindow|852CBCF6|735|%1 sunucusunun VNC şifresi:
+207|MainWindow|81643ACA|769| [kopuk]
+208|MainWindow|C9FE3280|770|Bağlantı kapandı: %1
+209|MainWindow|1B339ECF|808|Bağlanılıyor: %1
+210|MainWindow|A68B0951|838|Listeye eklendi: %1 — ad vermek için F2
+211|MainWindow|A11EA1AE|895|Kapatılacak bir oturum yok
+212|MainWindow|9BE54BB3|905|Ctrl+Alt+Del gönderildi
+213|MainWindow|DE6B5F94|913|Windows tuşu gönderildi
+214|MainWindow|86A1CF08|936|Bilgi için önce bir oturum açın
+215|MainWindow|E5F858B|948|Dosya transferi için önce bağlanın
+216|MainWindow|B6CEFCC6|958|Bu sunucu dosya transferini desteklemiyor.@N@@N@Sunucuda dosya transferinin etkin olduğunu ve VNC şifresinin tam erişim şifresi olduğunu (izleme şifresi değil) kontrol edin.
+217|MainWindow|9D97E687|972|Bağlı bir oturum yok
+218|MainWindow|3EB39DBA|976|İzleme modunda pano gönderilemez — önce Kontrol moduna geçin
+219|MainWindow|F7921B8B|981|Pano içeriği sunucuya gönderildi
+220|MainWindow|58BEA3D6|983|Panoda gönderilecek metin yok
+221|MainWindow|D32538B1|994|Sunucu panosu panoya kopyalandı
+222|MainWindow|131DA1C7|996|Sunucudan henüz pano metni gelmedi
+223|MainWindow|DDF0D4F9|1057|Sol panel gösteriliyor
+224|MainWindow|E60ABE6C|1059|Sol panel gizlendi — Ctrl+Shift+L ya da araç çubuğu düğmesiyle geri açılır
+225|MainWindow|50BB46A1|1076|xVNC Manager Hakkında
+226|MainWindow|369D1256|1085|<h2 style="margin: 0;">xVNC Manager</h2><p style="margin: 0;">Sürüm %1</p>
+227|MainWindow|C5795511|1101|Hakkında
+228|MainWindow|91C26B59|1102|Değişiklikler
+229|MainWindow|3872CC71|1106|Kapat
+230|MainWindow|61354E10|1121|Dil değişti
+231|MainWindow|F4695526|1122|Dil değişikliği, uygulama yeniden başlatıldığında geçerli olur.@N@@N@Uygulama yeniden başlatılsın mı?
+232|MainWindow|4B9F763B|1125|Yeniden başlat
+233|MainWindow|B6D58B67|1126|Sonra
+234|MainWindow|90D50949|1133|Dil tercihi kaydedildi
+235|MainWindow|710331D8|1145|<p><b>Ne için yapıldı:</b></p><p>Uzak masaüstlerine (VNC sunucularına) hızlı ve güvenli bağlanmak, kayıtlı bağlantıları gruplandırmak ve çoklu sekmelerde aynı anda birden çok oturumu yönetmek için bir bağlantı yöneticisi ve görüntüleyicidir. TightVNC 2.x dosya transferi desteğiyle dosya indirme/yükleme de pencere içinden yapılır.</p><p><b>Neyle yapıldı:</b></p><ul><li>C++17 ve Qt Widgets — Qt 6.8.3 LTS, <b>tek exe statik</b> derleme</li><li>RFB istemcisi: <b>libvncclient</b> (LibVNCServer istemci kitaplığı; vcpkg overlay port + yama)</li><li>Görüntü sıkıştırma: zlib ve libjpeg-turbo (Tight kodlaması)</li><li>Derleme: CMake + Ninja + MSVC (VS2019 BuildTools), vcpkg ile bağımlılık yönetimi</li><li>Sürüm: kökteki <b>VERSION</b> dosyasından üretilir, her derlemede 1 artırılır (0.99.x)</li></ul><p><b>Kim yaptı:</b></p><p>Geliştiren: <b>MiMo with Şahin AKIN</b> · proje: github.com/strdex/VNCManager</p><p><small>Çalıştığı sunucular: TightVNC 2.x (tam destek + dosya transferi), TigerVNC/TurboVNC/RealVNC (standart RFB), UltraVNC (görüntüleme), x11vnc ve LibVNCServer tabanlı sunucular.</small></p>
+236|MainWindow|BE790091|1176|<p><b>0.99.11 – 0.99.12</b> — <b>İngilizce çeviri</b>: arayüzün tamamı artık İngilizce de çalışabilir; dil Görünüm menüsünden seçilir, tercih hatırlanır ve uygulama yeniden başlatıldığında geçerli olur. Değişiklikler penceresi son derlemeleri kaydeder, Hakkında penceresine küçük bir yazım düzeltmesi yapıldı.</p><p><b>0.99.9 – 0.99.10</b> — <b>Değişiklikler penceresi</b> son derlemelerle güncellendi: dosya transferi düzeltmesi listeye işlendi.</p><p><b>0.99.7 – 0.99.8</b> — <b>Dosya transferi penceresi</b>: artık her açılışta sürücü seviyesinden başlar; son açılan klasörün hatırlanması kaldırıldı. Panolar çerçeveli grup kutularına alındı, her panoya “↑” (üst klasör) ve “Sürücüler” düğümleri eklendi, aktarma düğmeleri büyütüldü, kenar boşlukları ve satır düzeni sıkılaştırıldı.</p><p><b>0.99.5 – 0.99.6</b> — <b>Yardım menüsü</b> eklendi: “Hakkında” ve “Değişiklikler” pencereleri.</p><p><b>0.99.3 – 0.99.4</b> — <b>Sol panel kapatılabilir</b>: bağlantı listesi Ctrl+Shift+L, araç çubuğu düğmesi veya Görünüm menüsünden gizlenip geri getirilir; durumu sonraki açılışta korunur, açılışta önceki genişliğiyle döner. Uzak ekranda kontrol modundayken de kısayol çalışır.</p><p><b>0.99.1 – 0.99.2</b> — <b>Klavye girişi uzak sisteme iletilir</b>: Del, Ctrl+C/V/X, Ctrl+W, Ctrl+N, Ctrl+0/1, Ctrl+Tab, F5 artık uzak ekrana gider; pencere kısayolları kontrol modunda pasifleştirilir. Uygulamada kalanlar: F11, Ctrl+Shift+C/V/F/L, Ctrl+tekerlek. Sürüm numarası VERSION dosyasından üretilip her derlemede bir artar; derleme no exe özelliklerinde görünür.</p><p><b>0.99</b> — <b>İlk sürüm</b>: bağlantı profilleri ve gruplar, hızlı bağlan, çoklu sekme, izleme/kontrol modu, ölçeklendirme (sığdır/1:1/yakınlaştırma), tam ekran, çift yönlü pano eşitleme, Ctrl+Alt+Del ve Windows tuşu gönderimi, TightVNC 2.x dosya transferi, bağlantı listesini içe/dışa aktarma.</p>
+237|MainWindow|4084FBF9|1250|Kontrol
+238|MainWindow|DDAFC0FE|1278|Pencereye sığdır (otomatik ölçek)
+239|MainWindow|C49AE628|1281|Tam görüntüleme, 1:1
+240|MainWindow|35220571|1284|Sabit yakınlaştırma: %1%
+241|VncSession|F81415E7|354|RFB istemcisi olusturulamadi
+242|VncSession|F74C52BD|397|Bağlanılıyor: %1
+243|VncSession|1F49A04B|407|Sunucuya bağlanılamadı: %1
+244|VncSession|85B82DF6|426|Sunucu yetenek listesi okunamadı
+245|VncSession|66134A16|434|Bağlandı: %1 (%2 x %3)
+246|VncSession|5BFCF08A|452|Sunucu bağlantısı kesildi
+247|VncSession|57045CEB|457|Sunucu mesaji işlenemedi
+248|VncSession|75ED1ADD|466|Bağlantı kesildiği için dosya işlemi sonlandırıldı
+249|VncSession|B974E1DD|477|Bağlantı kapatıldı
+250|VncSession|AC8C8957|641|Oturum açık değil
+251|VncSession|E29904EE|655|Sunucu dosya işlemine yanıt vermedi
+252|VncSession|A93A1C79|668|Başka bir dosya işlemi sürüyor
+253|VncSession|EBB2CEA4|708|Yerel dosya açılamadı: %1
+254|VncSession|F027D976|735|İşlem iptal edildi
+255|VncSession|234DAB6A|776|Sunucu yanıtı okunamadı
+256|VncSession|4BA5D822|829|Yerel dosya yazılamadı: %1
+257|VncSession|61193D63|845|Sunucu verisi beklenmedik biçimde sıkıştırılmış
+258|VncSession|41BE6AE2|850|Yerel diske yazılamadı (disk dolu olabilir)
+259|VncSession|432F1AA5|872|İndirme tamamlandı: %1
+260|VncSession|D9151B07|893|Yükleme tamamlandı: %1
+261|VncSession|2F90CEC3|898|Klasör oluşturuldu
+262|VncSession|8B490D10|903|Silindi
+263|VncSession|2EE22A1D|908|Yeniden adlandırıldı
+264|VncSession|CBFF80C7|943|Sunucu işlemi reddetti
+265|VncSession|FD8D5AF5|966|Sunucudan beklenmedik dosya transferi yanıtı
+266|VncSession|20EC5E25|1007|Yükleme dosyası kapandı
+267|VncSession|6DEE1390|1015|Yerel dosya okunamadı: %1
+268|VncSession|35310CFE|1038|Sunucuya veri yazılamadı
+269|VncView|7A77FCDE|49|Bağlanılıyor: %1
+270|VncView|45C0FC68|241|Yalnızca görüntüleme
+271|VncView|7074FB3E|242|Bağlandı: %1 x %2
+272|VncView|6CAE6213|251|Bağlantı kapandı: %1

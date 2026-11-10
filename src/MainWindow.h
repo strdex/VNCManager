@@ -55,6 +55,7 @@ private slots:
     void onToggleLeftPanel(bool show);
     void onShowAbout();
     void onShowChangelog();
+    void onChangeLanguage(const QString& lang);
 
 private:
     void buildUi();

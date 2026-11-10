@@ -3,6 +3,8 @@
 #include <QApplication>
 #include <QDebug>
 #include <QIcon>
+#include <QSettings>
+#include <QTranslator>
 
 #include <windows.h>
 #include <dbghelp.h>
@@ -52,6 +54,17 @@ int main(int argc, char* argv[])
     QCoreApplication::setOrganizationName(QStringLiteral("xVNC"));
     QCoreApplication::setApplicationName(QStringLiteral("xVNCManager"));
     QCoreApplication::setApplicationVersion(QStringLiteral(XVNCRM_VERSION));
+
+    // Dil tercihi: app/language = "tr" (varsayilan, kaynak dil) ya da "en".
+    // Cevirici MainWindow kurulmadan once kurulmalidir.
+    QTranslator translator;
+    const QString language =
+        QSettings().value(QStringLiteral("app/language"), QStringLiteral("tr")).toString();
+    if (language == QLatin1String("en")) {
+        if (translator.load(QStringLiteral(":/translations/i18n_en.qm")))
+            app.installTranslator(&translator);
+        qInfo() << "dil:" << language << (translator.isEmpty() ? "qm yok (Turkce kalacak)" : "qm yuklendi");
+    }
 
     app.setWindowIcon(QIcon(QStringLiteral(":/app.ico")));
 
