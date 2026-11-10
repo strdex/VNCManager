@@ -1122,6 +1122,15 @@ QString MainWindow::aboutDialogHtml()
 QString MainWindow::changelogDialogHtml()
 {
     return tr(
+        "<p><b>0.99.9 – 0.99.10</b> — <b>Değişiklikler penceresi</b> son "
+        "derlemelerle güncellendi: dosya transferi düzeltmesi listeye işlendi.</p>"
+
+        "<p><b>0.99.7 – 0.99.8</b> — <b>Dosya transferi penceresi</b>: artık her "
+        "açılışta sürücü seviyesinden başlar; son açılan klasörün hatırlanması "
+        "kaldırıldı. Panolar çerçeveli grup kutularına alındı, her panoya "
+        "“↑” (üst klasör) ve “Sürücüler” düğümleri eklendi, aktarma "
+        "düğmeleri büyütüldü, kenar boşlukları ve satır düzeni sıkılaştırıldı.</p>"
+
         "<p><b>0.99.5 – 0.99.6</b> — <b>Yardım menüsü</b> eklendi: "
         "“Hakkında” ve “Değişiklikler” pencereleri.</p>"
 
